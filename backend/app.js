@@ -9,10 +9,14 @@ var cors = require('cors');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
+const isProduction = process.env.NODE_ENV === "production";
+
 var app = express();
 
 app.use(cors({
-  origin: "http://localhost:5173",
+  origin: isProduction
+    ? "https://actividad-programaci-n-avanzada-1.onrender.com"
+    : "http://localhost:5173",
   credentials: true
 }));
 
