@@ -15,12 +15,11 @@ var app = express();
 
 app.use(cors({
   origin: isProduction
-    ? "https://actividad-programaci-n-avanzada-1.onrender.com"
+    ? "https://gestionestado01.onrender.com/"
     : "http://localhost:5173",
   credentials: true
 }));
 
-// view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
@@ -33,12 +32,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
-// catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
 });
 
-// error handler
 app.use(function(err, req, res, next) {
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
